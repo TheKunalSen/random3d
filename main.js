@@ -134,10 +134,10 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setAnimationLoop(animation);
 
 
-const controls = new OrbitControls(camera, renderer.domElement);
-controls.enableDamping = true;
-controls.enableZoom = true;
-controls.zoomSpeed = 1.9;
+// const controls = new OrbitControls(camera, renderer.domElement);
+// controls.enableDamping = true;
+// controls.enableZoom = true;
+// controls.zoomSpeed = 1.9;
 
 // controls.dispose();
 const renderScene = new RenderPass(scene, camera);
