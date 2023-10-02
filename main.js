@@ -138,6 +138,7 @@ const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.enableZoom = true;
 controls.zoomSpeed = 1.9;
+
 // controls.dispose();
 const renderScene = new RenderPass(scene, camera);
 
@@ -158,7 +159,7 @@ composer.setSize(window.innerWidth, window.innerHeight);
 
 function animation(time) {
   composer.render(scene, camera);
-  controls.update();
+  // controls.update();
 
   // renderer.render( scene, camera );
 }
