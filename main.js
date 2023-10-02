@@ -29,13 +29,13 @@ const material = new THREE.MeshBasicMaterial({
   // wireframe: true,
 });
 
-
-let part_num = 2000;
+let mats= [];
+let part_num = 5000;
 for(let i = 0; i <part_num;i++) {
   const particles = new THREE.SphereGeometry(5, 12, 12); 
   const particalMaterial = new THREE.MeshBasicMaterial( {color: "#fff"} ); 
-  const cube = new THREE.Mesh( particles, particalMaterial ); 
-
+  var cube = new THREE.Mesh( particles, particalMaterial ); 
+mats.push(cube);
   const x = Math.floor(Math.random() * 600) - 300;
   const y = Math.floor(Math.random() * 650) - 350;
   const z = Math.floor(Math.random() * 190) - 90;
@@ -46,17 +46,14 @@ z:y,
 
 y:z,
 delay:2,
-ease: 'easeIn',
+ease: 'easeInOut',
 scrub:3,
 duration:17,
 
  })
 
- gsap.to(cube.scale,{
-  z:0.7,
-  delay:3,
-  duration:4
- })
+
+
   cube.scale.set(0.05, 0.05, 0.05);
    scene.add( cube );
    // Event listener for mouse hover
@@ -72,11 +69,11 @@ duration:17,
   
 
 }
+console.log(mats)
 
 
 
-
-camera.position.set(0,0,40)
+camera.position.set(0,0,-200)
 const initialCameraPosition = new THREE.Vector3(0, 0, 5); // Set your initial camera position
 const targetCameraPosition = new THREE.Vector3(0, 2, 5); // Set your target camera position
 // 5-40
@@ -85,7 +82,7 @@ function updateCameraPosition() {
   camera.position.lerp(targetCameraPosition, 0.05);
 }
 
-const animationDuration = 7; // Duration in seconds
+const animationDuration = 5; // Duration in seconds
 
 
 let jihad = true;
@@ -96,13 +93,22 @@ document.querySelector('button').addEventListener('click', () =>{
  
   
       duration: animationDuration,
-      // delay:2,
+      delay:5,
       ease: 'easeInOut',
       // onUpdate: updateCameraPosition,
       onComplete: () => {
         // Animation completed
       },
     });
+    mats.forEach((mat) =>{
+      gsap.to(mat.scale,{
+        z:2,
+       delay:-1,
+        duration:10,
+        ease: 'easeInOut',
+       });
+    })
+   
     jihad = false;
   
 //   gsap.to(  camera.fov, {
@@ -122,13 +128,21 @@ document.querySelector('button').addEventListener('click', () =>{
         // Animation completed
       },
     });
+    mats.forEach((mat) =>{
+      gsap.to(mat.scale,{
+        z:0,
+       delay:-1,
+        duration:10,
+        ease: 'easeInOut',
+       });
+    })
     jihad = true;
   }
 })
 
 const sphere = new THREE.Mesh(geometry, material);
 
-scene.add(sphere);
+// scene.add(sphere);
 sphere.scale.set(5, 5, 5);
 
 const renderer = new THREE.WebGLRenderer({canvas:canvas});
@@ -161,7 +175,7 @@ composer.setSize(window.innerWidth, window.innerHeight);
 
 function animation(time) {
   composer.render(scene, camera);
-  controls.update();
+  // controls.update();
 
   // renderer.render( scene, camera );
 }
