@@ -11,7 +11,7 @@ const camera = new THREE.PerspectiveCamera(
   60,
   window.innerWidth / window.innerHeight,
   1,
-  1000
+  10000
 );
 camera.position.z = 1;
 camera.lookAt(0,0,2000);
@@ -30,8 +30,8 @@ const material = new THREE.MeshBasicMaterial({
 });
 
 
-
-for(let i = 0; i <2000;i++) {
+let part_num = 2000;
+for(let i = 0; i <part_num;i++) {
   const particles = new THREE.SphereGeometry(5, 12, 12); 
   const particalMaterial = new THREE.MeshBasicMaterial( {color: "#fff"} ); 
   const cube = new THREE.Mesh( particles, particalMaterial ); 
@@ -72,6 +72,8 @@ duration:17,
   
 
 }
+
+
 
 
 camera.position.set(0,0,40)
@@ -126,7 +128,7 @@ document.querySelector('button').addEventListener('click', () =>{
 
 const sphere = new THREE.Mesh(geometry, material);
 
-// scene.add(sphere);
+scene.add(sphere);
 sphere.scale.set(5, 5, 5);
 
 const renderer = new THREE.WebGLRenderer({canvas:canvas});
@@ -159,7 +161,7 @@ composer.setSize(window.innerWidth, window.innerHeight);
 
 function animation(time) {
   composer.render(scene, camera);
-  // controls.update();
+  controls.update();
 
   // renderer.render( scene, camera );
 }
