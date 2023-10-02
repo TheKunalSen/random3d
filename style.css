@@ -7,4 +7,6 @@ overflow: hidden;
 
 button {
   position: absolute;
+height: 5vw;
+width: 5vw;
 }
