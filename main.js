@@ -32,7 +32,7 @@ const material = new THREE.MeshBasicMaterial({
 let mats= [];
 let part_num = 5000;
 for(let i = 0; i <part_num;i+=1) {
-  const particles = new THREE.SphereGeometry(5, 12, 12); 
+  const particles = new THREE.SphereGeometry(5, 5, 5); 
   const particalMaterial = new THREE.MeshBasicMaterial( {color: "#fff"} ); 
   var cube = new THREE.Mesh( particles, particalMaterial ); 
 mats.push(cube);
